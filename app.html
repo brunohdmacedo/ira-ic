@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head><meta charset="utf-8">
+	<title>Calculadora de IRA - 2022</title>
+	<meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+	<link href="assets/img/astronala.png" rel="shortcut icon" />
+	<link href="css/bootstrap.min.css" rel="stylesheet" />
+	<link href="css/style.css" rel="stylesheet" /><script
+      src="https://kit.fontawesome.com/1a10091c3c.js"
+      crossorigin="anonymous"
+    ></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-dark" style="background-color: #424242"><a class="navbar-brand" href="index.html"><img alt="" class="d-inline-block align-top" height="50" loading="lazy" src="assets/img/astronala.png" width="30" /> </a><button aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler d-lg-none" data-target="#collapsibleNavId" data-toggle="collapse" type="button"></button>
+<div class="collapse navbar-collapse" id="collapsibleNavId">
+<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+	<li class="nav-item"><a class="nav-link" href="index.html">In&iacute;cio</a></li>
+	<li class="nav-item"><a class="nav-link" href="https://iciencia.info/portal/">Portal IC</a></li>
+	<li class="nav-item active"><a class="nav-link" href="app.html">Calcular <span class="sr-only">(current)</span></a></li>
+	<li class="nav-item"><a class="nav-link" href="contact.html">Contato</a></li>
+	<li class="nav-item"><a class="nav-link" href="about.html">Sobre</a></li>
+</ul>
+</div>
+</nav>
+
+<div class="container mt-4" style="height: auto; min-height: 100vh">
+<div class="row">
+<div class="col-sm-12">
+<h1>Calculadora de IRA</h1>
+</div>
+</div>
+
+<div id="message"></div>
+
+<div class="row mt-5">
+<div class="col-md-4">
+<div class="card" style="border-radius: 15px">
+<h5 class="card-header blue text-white" style="
+                border-top-right-radius: 15px;
+                border-top-left-radius: 15px;
+              ">Adicionar Mat&eacute;ria - Cadeira - <span class="import-text" onclick="handleSelectFile()" style="color: #ebebeb">Importar notas...</span></h5>
+
+<div class="card-body">
+<form id="formCadeira" name="formCadeira" onsubmit="addGrade(event)">
+<div class="row">
+<div class="col-sm-4">
+<div class="form-group"><label for="">Semestre:</label> <input class="form-control" id="semestre" min="0" name="semestre" placeholder="0" required="" type="number" /></div>
+</div>
+
+<div class="col-sm-4">
+<div class="form-group"><label for="">Horas:</label> <input class="form-control" id="horas" min="0" name="horas" placeholder="0" required="" type="number" /></div>
+</div>
+
+<div class="col-sm-4">
+<div class="form-group"><label for="">Nota:</label> <input class="form-control" id="nota" max="10" min="0" name="nota" placeholder="0.00" required="" step="0.01" type="number" /></div>
+</div>
+</div>
+
+<div class="row">
+<div class="form-group ml-3">
+<div class="form-check form-check-inline"><label class="form-check-label"><input class="form-check-input" id="tranca" name="opcao" type="checkbox" value="tranca" /> Trancamento </label></div>
+
+<div class="form-check form-check-inline"><label class="form-check-label"><input class="form-check-input" id="falta" name="opcao" type="checkbox" value="falta" /> Reprova&ccedil;&atilde;o Por Falta </label></div>
+<small class="form-text text-muted" id="helpId">* Em caso de reprova&ccedil;&atilde;o por falta, a nota automaticamente &eacute; 0(zero)</small> <small class="form-text text-muted" id="helpId">** Lembrando que &eacute; apenas uma estimativa e jamais ir&aacute; substituir o SIGAA.</small></div>
+</div>
+<button class="btn btn-success" style="float: right" type="submit">Adicionar</button></form>
+</div>
+</div>
+
+<div class="card mt-3" style="border-radius: 15px">
+<h5 class="card-header blue text-white" style="
+                border-top-right-radius: 15px;
+                border-top-left-radius: 15px;
+              ">Op&ccedil;&otilde;es Gerais</h5>
+
+<div class="card-body">
+<div class="row">
+<div class="col-sm-6">
+<div class="form-group"><label for="iraCurso">IRA m&eacute;dio do Curso</label> <input class="form-control" id="iraCurso" max="10" min="0" name="iraCurso" placeholder="0.0" step="0.01" type="number" /></div>
+</div>
+
+<div class="col-sm-6">
+<div class="form-group"><label for="desvioPadrao">Desvio padr&atilde;o:</label> <input class="form-control" id="desvioPadrao" name="desvioPadrao" placeholder="0.0" step="0.01" type="number" /></div>
+</div>
+</div>
+<small class="form-text text-muted">Essas informa&ccedil;&otilde;es s&atilde;o necess&aacute;rias caso queira calcular o IRA Geral</small></div>
+</div>
+</div>
+
+<div class="col-md-8">
+<div class="row mb-4">
+<div class="col-md-6">
+<h3>Mat&eacute;ria - Cadeira -</h3>
+</div>
+
+<div class="col-sm-6"><button class="btn btn-success" id="buttonCalc" onclick="renderResult()" style="float: right" type="button">Calcular!</button></div>
+</div>
+
+<table class="table table-hover text-center">
+	<thead class="thead-default">
+		<tr>
+			<th>Semestre</th>
+			<th>Carga Hor&aacute;ria</th>
+			<th>Nota</th>
+			<th>A&ccedil;&otilde;es</th>
+		</tr>
+	</thead>
+	<tbody id="table-content">
+	</tbody>
+</table>
+<span class="import-text" onclick="handleSaveFile()" style="color: #777777">Exportar para arquivo...</span></div>
+</div>
+</div>
+<!-- Modal -->
+
+<div aria-hidden="true" aria-labelledby="resultadoIra" class="modal fade" id="modalResult" role="dialog" tabindex="-1">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<div class="modal-header">
+<h5 class="modal-title">Resultado</h5>
+<button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button></div>
+
+<div class="modal-body text-center">
+<div class="row">
+<div class="col-sm-6"><span style="font-size: 1.2em">IRA Individual:</span><br />
+<span id="indivualResult" style="font-weight: bold; font-size: 70px">0.00</span></div>
+
+<div class="col-sm-6"><span style="font-size: 1.2em">IRA Geral:</span><br />
+<span id="generalResult" style="font-weight: bold; font-size: 70px">0.00</span></div>
+</div>
+</div>
+
+<div class="modal-footer"><button class="btn btn-secondary" data-dismiss="modal" type="button">Fechar</button></div>
+</div>
+</div>
+</div>
+
+<footer class="blue py-2 mt-4" style="background-color: #424242">
+<div class="container">
+<div class="row justify-content-center text-center" style="color: #ebebeb">
+<p>Projeto Baseado no <a href="https://iracalculator.online" target="_blank"> P&amp;P </a> &amp; modificado por BHS Designer &amp; <a href="https://iciencia.info" target="_blank"> Integra&ccedil;&atilde;o da Ci&ecirc;ncia</a>. 2021 &copy;</p>
+</div>
+</div>
+</footer>
+<script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script><script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script><script src="js/bootstrap.min.js"></script><script src="js/FileSaver.js"></script><script src="js/script.js"></script></body>
+</html>

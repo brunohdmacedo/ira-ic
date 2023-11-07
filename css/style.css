@@ -1,0 +1,103 @@
+.welcome {
+ display:flex;
+ flex-direction:column;
+ justify-content:center;
+ align-items:center;
+ background-image:url(../assets/img/ira.jpg);
+ background-repeat:no-repeat;
+ background-size:cover;
+ min-height:100vh;
+ padding:0 5vw 5vw
+}
+.import-text {
+ font-size:.8rem;
+ float:right;
+ margin-top:2px
+}
+.import-text:hover {
+ text-decoration:underline;
+ cursor:pointer
+}
+.welcome-title {
+ font-family:roboto slab,serif;
+ font-size:2em;
+ color:#ebebeb
+}
+.welcome-span {
+ font-family:roboto slab,serif;
+ font-weight:300;
+ color:#cecece;
+ text-align:center
+}
+#ctaButton {
+ display:flex;
+ align-items:center;
+ flex-direction:column;
+ justify-content:center;
+ height:50px;
+ width:40%;
+ font-size:1.5em
+}
+.blue {
+ background-color:#424242
+}
+.dev-img {
+ border-radius:60%;
+ width:60%;
+ object-fit:cover
+}
+i {
+ color:#424242
+}
+@media(min-width:576px) {
+}
+@media(min-width:768px) {
+ .welcome-title {
+  font-size:3em
+ }
+}
+@media(min-width:992px) {
+ .welcome-title {
+  font-size:4em
+ }
+}
+@media(min-width:1200px) {
+}
+.featurette-divider {
+ margin:40px 0
+}
+.featurette {
+ overflow:hidden
+}
+.featurette-image.pull-left {
+ margin-right:40px
+}
+@media(min-width:576px) {
+}
+.featurette-image.pull-right {
+ margin-left:40px
+}
+.featurette-heading {
+ font-size:2rem
+}
+#image {
+ height:360px
+}
+#motivation {
+ font-size:17px
+}
+#open {
+ height:380px
+}
+a:link {
+ color:#fff
+}
+a:visited {
+ color:#fff
+}
+a:hover {
+ color:#fff
+}
+a:active {
+ color:#fff
+}
